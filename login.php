@@ -14,6 +14,8 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
 <link href="//fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese" rel="stylesheet">
+<link rel="STYLESHEET" type="text/css" href="codebase/dhtmlx.css">
+<script src="codebase/dhtmlx.js" type="text/javascript"></script>
 
 <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
 </head>
@@ -66,14 +68,22 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 		if(name == "" || pass == "")
 		{
-			alert("Field is empty");
+			dhtmlx.alert({
+			    title:"Alert",
+			    type:"alert-error",
+			    text:"Field is empty"
+			});	
 		}else
 		{
 			if(online==true)
 			{
 				checkUser(name, pass);
 			}else{
-				alert('This feature is not available offline');
+				dhtmlx.alert({
+				    title:"Alert",
+				    type:"alert-error",
+				    text:"This feature is not available offline"
+				});
 			}
 		}
 	}
@@ -109,7 +119,11 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 	function notfound()
 	{
-		alert("Initials/Password doesn't match");
+		dhtmlx.alert({
+		    title:"Alert",
+		    type:"alert-error",
+		    text:"Initials/Password doesn't match"
+		});
 		location.reload();
 	}
 
