@@ -19,7 +19,7 @@
 	<meta name="msapplication-starturl" content="/">
 
 	<!-- ganti sesuai url -->
-	<link rel="canonical" href="https://opensource.petra.ac.id/~m26415039/cobatepi/">
+	<link rel="canonical" href="https://pbs-am.herokuapp.com/">
   
 	<link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
