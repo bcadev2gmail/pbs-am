@@ -1,8 +1,5 @@
-#composer require csanquer/pdo-service-provider=~1.1dev
-#composer update
-
 {
   "require" : {
-    "csanquer/pdo-service-provider": "^1.1dev"
+    "herrera-io/silex-pdo": "1.*"
   }
 }
