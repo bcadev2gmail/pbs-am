@@ -5,7 +5,7 @@
 	{	
 		$nama = $_POST['id'];
 		
-		$qselect = mysqli_query($con,"DELETE FROM tipe WHERE id = '$nama'"); 
+		$qselect = pg_query($con,"DELETE FROM tipe WHERE id = '$nama'"); 
 	}
 
 ?>

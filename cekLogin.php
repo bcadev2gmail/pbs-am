@@ -8,9 +8,9 @@
 		$pass = $_POST['pass'];
 		// $user = 'admin';
 		// $pass = 'admin';
-		$check = mysqli_fetch_assoc(mysqli_query($con, "SELECT COUNT(*) as jml FROM user_am WHERE name LIKE '".$user."' AND password LIKE '".$pass."'"));
+		$check = pg_fetch_assoc(pg_query($con, "SELECT COUNT(*) as jml FROM user_am WHERE name LIKE '".$user."' AND password LIKE '".$pass."'"));
 		if ($check['jml'] == 1) {
-			$data = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM user_am WHERE name LIKE '".$user."' AND password LIKE '".$pass."'"));
+			$data = pg_fetch_assoc(pg_query($con, "SELECT * FROM user_am WHERE name LIKE '".$user."' AND password LIKE '".$pass."'"));
 			
 			$_SESSION['user'] = $data['name'];
 			$_SESSION['idUser'] = $data['idUser'];
