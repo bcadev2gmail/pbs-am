@@ -13,7 +13,7 @@
 			$data = pg_fetch_assoc(pg_query($con, "SELECT * FROM user_am WHERE name LIKE '".$user."' AND password LIKE '".$pass."'"));
 			
 			$_SESSION['user'] = $data['name'];
-			$_SESSION['idUser'] = $data['idUser'];
+			$_SESSION['idUser'] = $data['iduser'];
 
 			if($data['idUser'] == 1)
 			{
