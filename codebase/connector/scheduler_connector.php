@@ -18,7 +18,7 @@ class SchedulerDataItem extends DataItem{
 		$str.="<start_date><![CDATA[".$this->data[$this->config->text[0]["name"]]."]]></start_date>";
 		$str.="<end_date><![CDATA[".$this->data[$this->config->text[1]["name"]]."]]></end_date>";
 		$str.="<text><![CDATA[".$this->data[$this->config->text[2]["name"]]."]]></text>";
-		$str.="<desc><![CDATA[".$this->data[$this->config->text[3]["name"]]."]]></desc>";
+		$str.="<description><![CDATA[".$this->data[$this->config->text[3]["name"]]."]]></description>";
 		$str.="<type><![CDATA[".$this->data[$this->config->text[4]["name"]]."]]></type>";
 		for ($i=4; $i<sizeof($this->config->text); $i++){
 			$extra = $this->config->text[$i]["name"];
@@ -104,7 +104,7 @@ class SchedulerDataProcessor extends DataProcessor{
 			return $this->config->text[1]["db_name"];
 		if ($data=="text")
 			return $this->config->text[2]["db_name"];
-		if ($data=="desc")
+		if ($data=="description")
 			return $this->config->text[3]["db_name"];
 		if ($data=="type")
 			return $this->config->text[4]["db_name"];	
@@ -124,7 +124,7 @@ class JSONSchedulerDataItem extends SchedulerDataItem{
 		$obj['start_date'] = $this->data[$this->config->text[0]["name"]];
 		$obj['end_date'] = $this->data[$this->config->text[1]["name"]];
 		$obj['text'] = $this->data[$this->config->text[2]["name"]];
-		$obj['desc'] = $this->data[$this->config->text[3]["name"]];
+		$obj['description'] = $this->data[$this->config->text[3]["name"]];
 		$obj['type'] = $this->data[$this->config->text[4]["name"]];
 
 		for ($i=3; $i<sizeof($this->config->text); $i++){
