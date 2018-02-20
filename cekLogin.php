@@ -15,7 +15,7 @@
 			$_SESSION['user'] = $data['name'];
 			$_SESSION['idUser'] = $data['iduser'];
 
-			if($data['idUser'] == 1)
+			if($data['iduser'] == 1)
 			{
 				$_SESSION['status'] = 2;
 			}else{
