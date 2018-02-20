@@ -48,7 +48,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 						include "connect.php";
 						$res = pg_query($con,"SELECT * FROM tipe");
 						$count = 1;
-						while ($row = pg_fetch_row($res,0)){
+						while ($row = pg_fetch_row($res)){
 							if($count==1)
 							{
 								echo "<option value=".$row[0].">".$row[1]."</option>";
@@ -224,7 +224,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 						include "connect.php";
 						$res = pg_query($con,"SELECT * FROM tipe");
 						$count = 1;
-						while ($row = pg_fetch_array($res,0)){
+						while ($row = pg_fetch_array($res)){
 							if($count==1)
 							{
 								echo "<option value=".$row[0].">".$row[1]."</option>";
