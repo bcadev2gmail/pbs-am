@@ -46,9 +46,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<option selected="true" disabled> --- </option>
 					<?php
 						include "connect.php";
-						$res = mysqli_query($con,"SELECT * FROM tipe");
+						$res = pg_query($con,"SELECT * FROM tipe");
 						$count = 1;
-						while ($row = mysqli_fetch_row($res)){
+						while ($row = pg_fetch_row($res)){
 							if($count==1)
 							{
 								echo "<option value=".$row[0].">".$row[1]."</option>";
