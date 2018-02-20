@@ -287,7 +287,7 @@
 			var ha = new Date(tanggal);
 			var evs = scheduler.getEvents();
 			for(var i=0; i<evs.length; i++){
-		       if(evs[i].idUser == userId)
+		       if(evs[i].iduser == userId)
 		       {
 			       if(evs[i].start_date.getTime() == ha.getTime())
 			       {
@@ -370,7 +370,7 @@
 					var evs = scheduler.getEvents();
 					
 					for(var i=0; i<evs.length; i++){
-				       if(evs[i].idUser == userId)
+				       if(evs[i].iduser == userId)
 				       {
 				       		if(evs[i].start_date.getTime() == sekarang.getTime())
 				       		{
@@ -432,7 +432,7 @@
 				waitTime+=1; 
 				waitTime = waitTime*1000;
 				setTimeout(function () {
-			        checkEvents(start, end, tEv.id_tipe, tEv.idUser);
+			        checkEvents(start, end, tEv.id_tipe, tEv.iduser);
 			    }, waitTime);
 	   
 	    	}
@@ -481,7 +481,7 @@
 				{
 					if(users[x]["name"] == ev.text)
 					{
-						ev.idUser = users[x]["idUser"];
+						ev.iduser = users[x]["iduser"];
 						ada = true;
 					}
 				}
@@ -495,7 +495,7 @@
 					return false;
 				}
 			}else if(user==1){
-				ev.idUser = userId;
+				ev.iduser = userId;
 			}
 		    
 		    if (!ev.text) {
@@ -613,7 +613,7 @@
 	    		{
 		    		if(scheduler.getEvent(id).start_date < new Date())
 		    		{
-		    			if(scheduler.getEvent(id).idUser == null)
+		    			if(scheduler.getEvent(id).iduser == null)
 		    			{
 		    				return false;
 		    			}else{
@@ -624,7 +624,7 @@
 				    {
 				    	if(user==1)
 				    	{
-				    		if(userId == scheduler.getEvent(id).idUser)
+				    		if(userId == scheduler.getEvent(id).iduser)
 				    		{
 				    			mine=true;
 				    			edit=true;
@@ -636,7 +636,7 @@
 				    			data[4] = scheduler.getEvent(id).end_date;	
 				    				
 				    		}else{
-				    			if(scheduler.getEvent(id).idUser == null)
+				    			if(scheduler.getEvent(id).iduser == null)
 				    			{
 				    				edit=false;
 				    				scheduler.config.readonly_form = false;
@@ -648,7 +648,7 @@
 				    	}else if(user==2){
 				    		scheduler.config.readonly_form = false;
 				   			
-				   			if(scheduler.getEvent(id).idUser == null)
+				   			if(scheduler.getEvent(id).iduser == null)
 		    				{
 		    					edit=false;
 		    					data[0] = scheduler.getEvent(id).text;
@@ -663,7 +663,7 @@
 					
 					scheduler.config.readonly_form  = true;
 					
-					if(scheduler.getEvent(id).idUser == null)
+					if(scheduler.getEvent(id).iduser == null)
 				    {
 				    	dhtmlx.alert({
 						    title:"Alert",
@@ -767,7 +767,7 @@
 		    });
 				scheduler.config.dblclick_create = false;
 				scheduler.attachEvent("onDblClick", function (id){
-					if(scheduler.getEvent(id).idUser == null)
+					if(scheduler.getEvent(id).iduser == null)
 				    {
 						dhtmlx.alert({
 						    title:"Alert",
