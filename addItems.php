@@ -30,7 +30,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			</div>
 			<div class="name">
 				<label>Item Name</label>
-				<input class="input1" type="text" id="name" required="">
+				<input class="input1" type="text" id="names" required="">
 			</div>
 			<div class="signup">
 				<input type="button" value="ADD" onclick="add()" style="background-color:#9999cc;">
@@ -77,7 +77,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	}
 	function add()
 	{
-		name = document.getElementById('name').value;
+		name = document.getElementById('names').value;
 		if(name == "")
 		{
 			dhtmlx.alert({
