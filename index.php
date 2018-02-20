@@ -630,7 +630,7 @@
 				    			edit=true;
 				    			scheduler.config.readonly_form = false;
 				    			data[0] = scheduler.getEvent(id).text;
-				    			data[1] = scheduler.getEvent(id).desc;
+				    			data[1] = scheduler.getEvent(id).description;
 				    			data[2] = scheduler.getEvent(id).id_tipe;
 				    			data[3] = scheduler.getEvent(id).start_date;
 				    			data[4] = scheduler.getEvent(id).end_date;	
