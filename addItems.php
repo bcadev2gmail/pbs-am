@@ -42,7 +42,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			</div>
 			<div class="name">
 				<label>Item Name</label>
-				<select class="input1" id="tipe">
+				<select class="input1" id="tipee">
 					<option selected="true" disabled> --- </option>
 					<?php
 						include "connect.php";
@@ -71,7 +71,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	var types = [], name;
 	function del()
 	{
-		var e = document.getElementById("tipe");
+		var e = document.getElementById("tipee");
 		var idTipe = e.options[e.selectedIndex].value;
 		delTypes(idTipe);
 	}
