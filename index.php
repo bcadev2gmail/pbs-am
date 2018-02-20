@@ -62,16 +62,13 @@
        } else {
          console.log('Service Worker is not supported by browser.');
        }
-
        if(!('PushManager' in window))
        {
        	 console.log('Push messanging is not supported by browser.');
        }
-
         if (!('Notification' in window)) {
 		  console.log('This browser does not support notifications!');
 		}
-
         if (!('indexedDB' in window)) {
 		  console.log('This browser doesn\'t support IndexedDB');
 		}
@@ -110,11 +107,9 @@
 	.filters_wrapper label {
 		padding-right: 3px;
 	}
-
 	select:focus {
   		outline: none;
   	}
-
   	.admin{
   		width:60px !important;
   		color:white;
@@ -141,7 +136,6 @@
   		.divheader{
   			padding-bottom: 2%;
   		}
-
   		.admin .signout{
   			margin-right:3% !important;
   		}
@@ -149,7 +143,6 @@
   			padding-top: 2% !important;
   		}
   	}
-
   	@media screen and (min-width: 768px) {
   		.headertab{
   			margin-top: 1% !important;
@@ -168,16 +161,13 @@
   		.divheader{
   			padding-bottom: 1%;
   		}
-
   		.admin{
   			margin-top: 2% !important;
   			margin-right: 1% !important;
   		}
-
   		.headeradmin{
   			padding-top: 0 !important;
   		}
-
   		.filters_wrapper{
   			margin-left: 0.6% !important;
   		}
@@ -186,7 +176,6 @@
 
 <script>
 	var filters_bool, filters_name = [], filters = [], ind, showLB, online=true, sumType, user, userId, initial, mine, users=[], timeNow, stop, doit, first, eve, reload, data = [], edit, sizeType, tEv, newEv, tId;
-
 	//user
 	// 0 - blm login
 	// 1 - user biasa
@@ -195,11 +184,8 @@
 	$( document ).ready(function() {
 		if(navigator.onLine) {
 			getUser();
-
 			var ti = getTypes();
-
 			var select = document.getElementById('display');
-
 			for(var j=0; j<ti.length; j++)
 			{
 				var opt = document.createElement('option');
@@ -228,7 +214,6 @@
 	    }else{
 	    	echo 'user=0;';
 	    }
-
 	    if(isset($_GET['ev']))
 	    {
 	    	echo 'eve='.json_encode($_GET['ev']).';';
@@ -236,18 +221,15 @@
 	    }else{
 	    	echo 'eve=0;';
 	    }
-
 	    ?>
 	    Notification.requestPermission();
 		intervals();
 	});
-
 	function intervals()
 	{
 		doStuff();
 		var aut = setInterval(doStuff, 10000);
 	}
-
 	function init() 
 	{
 		if(!navigator.onLine) {
@@ -260,47 +242,39 @@
 		initResponsive(scheduler);
 		
 		roundTime();
-
 		function roundTime()
 		{
 			checkTime();
 			//semenit internal check timenya
 			doit = setInterval(checkTime,60000);
 		}
-
 		function checkTime()
 		{
 			timeNow = new Date();
-
 			if(timeNow.getMinutes()==15 || timeNow.getMinutes()==45)
 			{
 				stop = true;
 			}
-
 			if(stop == true)
 			{
 				clearInterval(doit);
 				intv();
 			}
 		}
-
 		function intv()
 		{
 			notif();
 			//30 mnt interval ceknya
 			var not = setInterval(notif, 1800000);
 		}
-
 		function notif()
 		{
 			var now = new Date();
 			var min = now.getMinutes();
-
 			var nowYear = now.getFullYear();
 			var nowMonth = now.getMonth();
 			var nowDate = now.getDate();
 			var nowHour = now.getHours();
-
 			if(min>=45)
 			{
 				min='00';
@@ -310,11 +284,8 @@
 			}
 			
 			var tanggal = nowYear + "-" + (nowMonth+1) + "-" + nowDate + " " + nowHour + ":" + min + ":00";
-
 			var ha = new Date(tanggal);
-
 			var evs = scheduler.getEvents();
-
 			for(var i=0; i<evs.length; i++){
 		       if(evs[i].idUser == userId)
 		       {
@@ -324,16 +295,13 @@
 			       }
 			   }
 			}
-
 		}
-
 		scheduler.attachEvent("onXLS", function (){
 		    scheduler.config.readonly = true;
 		});
-
 		scheduler.config.lightbox.sections=[	
 			{name:"Initial", height:40, map_to:"text", type:"textarea" , focus:true},
-			{name:"Notes", height:40, type:"textarea", map_to:"desc" },
+			{name:"Notes", height:40, type:"textarea", map_to:"description" },
 			{name:"Item", height:21, type:"select", map_to:"id_tipe", options:[
 			    {key:"1", label:"Laptop Windows 7"},
 			    {key:"2", label:"Laptop Windows 8"},
@@ -343,12 +311,10 @@
 			]},
 			{name:"Time", height:72, type:"calendar_time", map_to:"auto"}
 		];
-
 		scheduler.ignore_week = function(date){
 		    if (date.getDay() == 6 || date.getDay() == 0)
 		        return true;
 		};
-
 		scheduler.config.first_hour = 8;
 		scheduler.config.last_hour = 18;
 		scheduler.config.start_on_monday = true;
@@ -361,38 +327,29 @@
 		scheduler.config.drag_resize = false;
       	scheduler.config.drag_move = false;
       	scheduler.config.drag_create = false;
-
       	scheduler.config.icons_select = [];
-
 		var setter = scheduler.form_blocks.time.set_value;
-
 		scheduler.templates.quick_info_content = function(start, end, ev){ 
-		       return ev.desc;
+		       return ev.description;
 		};
 		
 		scheduler.attachEvent("onTemplatesReady", function(){
 		    scheduler.templates.event_text=function(start,end,event){
-		        return "<b> Initial : " + event.text + "</b><br><i> Notes : " + event.desc + "</i>";
+		        return "<b> Initial : " + event.text + "</b><br><i> Notes : " + event.description + "</i>";
 		    }
 		});
-
 		scheduler.attachEvent("onXLE", function(){
-
 			scheduler.config.readonly = false;
-
 			if(first==true && reload==false)
 			{
 				var now = new Date();
 				var min = now.getMinutes();
 				var nextMin;
 				var yes = false;
-
 				var nowYear = now.getFullYear();
 				var nowMonth = now.getMonth();
 				var nowDate = now.getDate();
-
 				var nowHour = now.getHours();
-
 				if(min>15 && min<30)
 				{
 					nextMin = '30';
@@ -406,7 +363,6 @@
 					yes = true;
 				}
 				
-
 				var tanggal = nowYear + "-" + (nowMonth+1) + "-" + nowDate + " " + nowHour + ":" + nextMin + ":00";
 				if(yes==true)
 				{
@@ -425,19 +381,15 @@
 				}
 				first=false;
 			}
-
 			if(eve!=0)
 			{
 				scheduler.showLightbox(eve);
-
 			}
-
 			if(reload == true)
 			{
 				reload=false;
 			}
 		});
-
 		scheduler.attachEvent("onBeforeEventCreated", function (e){
 		  var now = new Date();
 		  var start_date = scheduler.getActionData(e).date;
@@ -446,17 +398,13 @@
 	      {
 	      	return false;
 	      }
-
 		  return true;
 		});
-
 		var buttons = ["delete", "edit"];
-
 		scheduler.attachEvent("onClick", function (id, e){
        		showLB=true;
        		
        		var cek = scheduler.getEvent(id);
-
        		if(online==true)
        		{
 	       		if(cek.start_date < new Date())
@@ -470,65 +418,51 @@
        		}
 		    return true;
 		});
-
 		scheduler.attachEvent("onAfterLightbox", function (){
 			scheduler.config.first_hour = 8;
-
 			if(newEv==true)
 			{
-
 	    		newEv = false;
 				
 				var nStart = new Date(tEv.start_date.getTime() + 60000);
 				
 				var end = convertDate(tEv.end_date);
 				var start = convertDate(nStart);
-
 				var waitTime = Math.random() * 3;
 				waitTime+=1; 
 				waitTime = waitTime*1000;
 				setTimeout(function () {
 			        checkEvents(start, end, tEv.id_tipe, tEv.idUser);
-
 			    }, waitTime);
 	   
 	    	}
-
 	    	newEv = false;
-
 			showLB=true;
 		});
-
 		scheduler.attachEvent("onEventSave",function(id,ev,is_new){
 			if(edit == true)
 			{
 				var ganti = false;
-
 				if(ev.text != data[0])
 				{
 					ganti = true;
 				}
-
-				if(ev.desc != data[1])
+				if(ev.description != data[1])
 				{
 					ganti = true;
 				}
-
 				if(ev.id_tipe != data[2])
 				{
 					ganti = true;
 				}
-
 				if(ev.start_date.getTime() != data[3].getTime())
 				{
 					ganti = true;
 				}
-
 				if(ev.end_date.getTime() != data[4].getTime())
 				{
 					ganti = true;
 				}
-
 				if(ganti==false)
 				{
 					dhtmlx.alert({
@@ -538,10 +472,8 @@
 					});
 					return false;
 				}	
-
 				edit=false;
 			}
-
 			if(user==2)
 			{
 				var ada = false;
@@ -553,7 +485,6 @@
 						ada = true;
 					}
 				}
-
 				if(ada == false)
 				{
 					dhtmlx.alert({
@@ -575,15 +506,14 @@
 				});
 		        return false;
 		    }
-
-		    if (!ev.desc) {
+		    if (!ev.description) {
 		        dhtmlx.alert({
 				    title:"Alert",
 				    type:"alert-error",
 				    text:"Notes cannot be empty"
 				});
 		        return false;
-		    }else if(!ev.desc.match(/^[a-zA-Z,'-'' '\.0-9]+$/))
+		    }else if(!ev.description.match(/^[a-zA-Z,'-'' '\.0-9]+$/))
 		    {
 		    	dhtmlx.alert({
 				    title:"Alert",
@@ -592,7 +522,6 @@
 				});
 		        return false;
 		    }
-
 		    if (ev.text.length>3 || ev.text.length<3) {
 		        dhtmlx.alert({
 				    title:"Alert",
@@ -601,7 +530,6 @@
 				});
 		        return false;
 		    }
-
 			if (ev.end_date < ev.start_date)
 		    {
 		    	dhtmlx.alert({
@@ -611,9 +539,7 @@
 				});
 		    	return false;
 		    }		 
-
 		 	var checkevents = scheduler.getEvents(ev.start_date, ev.end_date);
-
 		 	if(checkevents.length > 0)
 		 	{
 		 		for(var i=0; i<checkevents.length; i++)
@@ -625,46 +551,36 @@
 						    type:"alert-error",
 						    text:"Time slot is not empty"
 						});
-
 						return false;
 		 			}
 		 		}		
 		 	}
-
 		    return true;
 		});
-
 		scheduler.attachEvent("onEventAdded", function(id,ev){
 			tEv = ev;
 			newEv = true;
 			return true;
 		});
-
 		scheduler.attachEvent("onEventChanged",function(id,ev,is_new){
 		 	dhtmlx.alert({
 			    title:"Success",
 			    type:"alert",
 			    text:"Data has been successfully updated"
 			});
-
 		 	scheduler.updateView();
-
 		    return true;
 		});
-
 	
 		if(online == true)
 		{
 			var types = getTypes();
-
 		for(var i = 0; i < types.length; i++)
 		{
 			filters_name[i] = i+1;
 			filters[i]=false;
 		}
-
 		filters[0]=true;
-
 		var dropdown = document.getElementById("display");
 		
 		for(var i=0; i<filters_name.length; i++) {
@@ -675,32 +591,24 @@
 					if(filters_name[x] == input_filter)
 					{
 						filters[filters_name[x]-1] = true;
-
 					}else{
 						filters[filters_name[x]-1] = false;
 					}
 				}
-
 				scheduler.updateView();
 			}
 		}
-
 		scheduler.filter_month = scheduler.filter_day = scheduler.filter_week = function(id, event) {
-
 			if (filters[parseInt(event.id_tipe)-1]) {
 				return true;
 			}
-
 			return false;
 		};
-
 			scheduler.attachEvent("onBeforeLightbox", function (id){
-
 	    		var cek = scheduler.getEvent(id);
 	    		
 	    		var skrg = new Date();
 	    		var wkt = skrg.getHours();
-
 	    		if(user>0)
 	    		{
 		    		if(scheduler.getEvent(id).start_date < new Date())
@@ -721,7 +629,6 @@
 				    			mine=true;
 				    			edit=true;
 				    			scheduler.config.readonly_form = false;
-
 				    			data[0] = scheduler.getEvent(id).text;
 				    			data[1] = scheduler.getEvent(id).desc;
 				    			data[2] = scheduler.getEvent(id).id_tipe;
@@ -745,7 +652,7 @@
 		    				{
 		    					edit=false;
 		    					data[0] = scheduler.getEvent(id).text;
-				    			data[1] = scheduler.getEvent(id).desc;
+				    			data[1] = scheduler.getEvent(id).description;
 				    			data[2] = scheduler.getEvent(id).id_tipe;
 				    			data[3] = scheduler.getEvent(id).start_date;
 				    			data[4] = scheduler.getEvent(id).end_date;
@@ -770,14 +677,12 @@
 	    		
 			    return true;
 			});
-
 			scheduler.attachEvent("onLightbox", function(){
 				   if(user==1)
 				   {
 				   		var section = scheduler.formSection("Initial");
 				   		
 					   	section.control.disabled = true;
-
 				   }else if(user==2)
 				   {
 				   		var section = scheduler.formSection("Initial");
@@ -789,16 +694,12 @@
 			scheduler.init('scheduler_here',new Date(),"week");
 			scheduler.setLoadMode("week");
 			scheduler.load("data/events.php");
-
 			var dp;
-
 			dp = new dataProcessor("data/events.php");
-
 			dp.attachEvent("onFullSync", function(){
 	    		scheduler.clearAll();
 				scheduler.load("data/events.php");
 			});
-
 			dp.defineAction("invalid",function(sid,response){
 				dhtmlx.alert({
 						    title:"Alert",
@@ -807,7 +708,6 @@
 						});
 				return false;
 			});
-
 			dp.attachEvent("onDBError", function(errorData){
 				 if(errorData.details == "collision"){
 				      dhtmlx.alert({
@@ -817,7 +717,6 @@
 						});
 				 }
 			});
-
 			dp.attachEvent("onValidationError", function(id, details){
 				if(details.details == "collision"){
 				      dhtmlx.alert({
@@ -827,7 +726,6 @@
 						});
 				 }
 			});
-
 			dp.init(scheduler);
 		
 			<?php
@@ -835,15 +733,12 @@
 			?>
 		}else{
 		idbApp.amountType().then(function(sum) {
-
 		        for(var i = 0; i < sum; i++)
 				{
 					filters_name[i] = i+1;
 					filters[i]=false;
 				}
-
 				filters[0]=true;
-
 		var drop = document.getElementById("display");
 		
 		for(var i=0; i<filters_name.length; i++) {
@@ -856,28 +751,21 @@
 					if(filters_name[x] == input_filter)
 					{
 						filters[filters_name[x]-1] = true;
-
 					}else{
 						filters[filters_name[x]-1] = false;
 					}
 				}
-
 				scheduler.updateView();
 			}
 		}
-
 		scheduler.filter_month = scheduler.filter_day = scheduler.filter_week = function(id, event) {
-
 			if (filters[parseInt(event.id_tipe)-1]) {
 				return true;
 			}
-
 			return false;
 		};
 		    });
-
 				scheduler.config.dblclick_create = false;
-
 				scheduler.attachEvent("onDblClick", function (id){
 					if(scheduler.getEvent(id).idUser == null)
 				    {
@@ -888,9 +776,7 @@
 						});
 					}
 				});
-
 				scheduler.attachEvent("onBeforeLightbox", function (id){
-
 	    		var cek = scheduler.getEvent(id);
 	    		
 	    		var skrg = new Date();
@@ -900,7 +786,6 @@
 	    		
 				    return true;
 				});
-
 			scheduler.config.xml_date="%Y-%m-%d %H:%i:%s";
 			scheduler.init('scheduler_here',new Date(),"week");
 			scheduler.setLoadMode("week");
@@ -909,7 +794,6 @@
 		    });
 		}
 	}
-
 	function displayNotification(idEvent, min) {
 	    if (Notification.permission == 'granted') {
 	      navigator.serviceWorker.getRegistration().then(function(reg) {
@@ -921,19 +805,14 @@
 	          dateOfArrival: Date.now(),
 	          primaryKey: idEvent
 	        }
-
 	        };
-
 	        reg.showNotification('Reminder', options);
 	      });
 	    }
-
 	  }
-
 	function getUser()
 	{
 		var result;
-
 		$.ajax({
 	        url     : "getUsers.php",
 	        type    : "POST",
@@ -947,10 +826,8 @@
 	        	users=res;
 	        }
  		});
-
  		return result;
 	}
-
 	function getTipe()
 	{
 		var result=[];
@@ -970,10 +847,8 @@
 	        	idbApp.addTypes(result);
 	        }
  		});
-
  		return result;
 	}
-
 	function getTypes()
 	{
 		var result=[];
@@ -991,10 +866,8 @@
 	        	result = res;
 	        }
  		});
-
  		return result;
 	}
-
 	function getEvents()
 	{
 		var result=[];
@@ -1014,10 +887,8 @@
 	        	idbApp.addEvents(result);
 	        }
  		});
-
  		return result;
 	}
-
 	function checkEvents(start, end, type, id)
 	{
 		$.ajax({
@@ -1042,7 +913,6 @@
 					    type:"alert-error",
 					    text:"Collision occured, Failed to add"
 					});
-
 	        		scheduler.clearAll();
 					scheduler.load("data/events.php");
 	        		
@@ -1052,14 +922,12 @@
 					    type:"alert",
 					    text:"Data has been successfully added"
 					});
-
 	        		scheduler.clearAll();
 					scheduler.load("data/events.php");
 	        	}
 	        }
  		});
 	}
-
 	function convertDate (now) {
 	  year = "" + now.getFullYear();
 	  month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
@@ -1069,7 +937,6 @@
 	  second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
 	  return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
 	}
-
 	function doStuff() {
 	   if(!navigator.onLine) {
 	   		online = false;
@@ -1079,7 +946,6 @@
 	   		getTipe();
 	   }
 	}
-
 </script>
 
 <body onload="init();" style="background-color: #f6f6f6;">
@@ -1142,12 +1008,10 @@
 			   		window.location.href = "./login.php";
 			   }
 		}
-
 		function addItem()
 		{
 			window.location.href="./addItems.php";
 		}
-
 		function signout()
 		{
 			$.ajax({
