@@ -15,7 +15,7 @@ var cacheFiles = [
     './codebase/ext/dhtmlxscheduler_responsive.js',
     './codebase/ext/dhtmlxscheduler_minical.js',
     './codebase/dhtmlx.css',
-    './codebase/dhtmlxscheduler.css',
+    './codebase/dhtmlxscheduler_flat.css',
     './codebase/dhtmlxscheduler_responsive.css',
     './indexedDB.js',
     './idb.js',
